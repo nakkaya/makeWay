@@ -1,9 +1,9 @@
 objects = build/util.o build/NetworkInterface.o build/ArpFactory.o build/makeWay.o
 CC = g++ -Wall
 
-darwin : util  NetworkInterfaceDarwin ArpFactory driverDarwin
+darwin : clean util  NetworkInterfaceDarwin ArpFactory driverDarwin
 	$(CC) -lpcap $(objects) -o build/makeWay
-linux : util NetworkInterfaceLinux ArpFactory driverLinux
+linux : clean util NetworkInterfaceLinux ArpFactory driverLinux
 	$(CC) -lpcap $(objects) -o build/makeWay
 
 driverDarwin: makeWay.cpp
@@ -23,4 +23,4 @@ ArpFactory: ArpFactory.cpp
 	$(CC)  -c ArpFactory.cpp -o build/ArpFactory.o
 
 clean:
-	rm -rf build/*o build/makeWay
+	rm -rf build/ && mkdir build
