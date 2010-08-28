@@ -8,6 +8,8 @@
 #include "ArpFactory.h"
 #include "NetworkInterface.h"
 
+#define VERSION 1.1
+
 using namespace std;
 time_t lastAdded;
 
@@ -94,7 +96,7 @@ map<string,string> parseCommandLineArguments(int argc,
 			       char **argv,
 			       vector<string> &whiteList ){    
   if ( argc <= 1 ){
-    cout<< "makeWay v 1.0" <<endl;
+    cout<< "makeWay v " << VERSION <<endl;
     cout<< "usage: interface [scan] [ whiteListIPs ] " <<endl;    
     exit(0);
   }  
@@ -106,7 +108,7 @@ map<string,string> parseCommandLineArguments(int argc,
   options["interface"] = interface;  
   options["injectInterval"] = "3";
   
-  cout<< argc <<endl;
+  //cout<< argc <<endl;
   
   if (argc > 2 ){    
     string scan(argv[2]);  
