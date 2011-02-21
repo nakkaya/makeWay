@@ -7,7 +7,7 @@ using namespace std;
 
 vector<string> StringSplit(string str, string delim){
   vector<string> results;
-  int cutAt;
+  size_t cutAt;
   while( (cutAt = str.find_first_of(delim)) != str.npos ){
 
       if(cutAt > 0){
