@@ -1,4 +1,5 @@
 #include "NetworkInterface.h"
+#include <cstdio>
 
 NetworkInterface::NetworkInterface( const char* dv ){
   dev = dv;

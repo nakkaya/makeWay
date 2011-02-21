@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <inttypes.h>
 
 //custom functions...
 #include "util.h"
