@@ -9,7 +9,7 @@
 #include "ArpFactory.h"
 #include "NetworkInterface.h"
 
-#define VERSION 1.1
+#define VERSION "1.0"
 
 using namespace std;
 time_t lastAdded;
