@@ -98,7 +98,7 @@ map<string,string> parseCommandLineArguments(int argc,
 			       vector<string> &whiteList ){    
   if ( argc <= 1 ){
     cout<< "makeWay v " << VERSION <<endl;
-    cout<< "usage: interface [scan] [ whiteListIPs ] " <<endl;    
+    cout<< "usage: INTERFACE [scan] [-t SECONDS] [WHITE-LIST-IP ..]" <<endl;
     exit(0);
   }  
 
