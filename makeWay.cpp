@@ -30,9 +30,13 @@ using namespace std;
 time_t lastAdded;
 
 void arpListener(u_char *argv,const struct pcap_pkthdr* pkthdr,const u_char* packet){
-  
+
   struct ether_hdr *eptr = (struct ether_hdr *) packet;
   struct pcapLoopHandler *handler = (struct pcapLoopHandler *) argv;
+
+  time_t elapsed = time(NULL) - handler->arpListenerStartedAt;
+  if ( elapsed > 2 )
+    pcap_breakloop( handler->ph );
 
   if ( eptr->h_proto == htons(ARP_PROTO) ){    
     //get arp packet
@@ -51,15 +55,8 @@ void arpListener(u_char *argv,const struct pcap_pkthdr* pkthdr,const u_char* pac
     
     if ( found == false ){
       cout<< "[+] " << host.ip << " is at " << host.mac <<endl;
-      lastAdded = time (NULL);
       handler->targetList.push_back(host);      
     }    
-    
-    time_t t = time (NULL);
-    time_t elapsed = (t - lastAdded );
-    if ( elapsed > 1 ){
-      pcap_breakloop( handler->ph );
-    }
   }
 }
 
@@ -96,14 +93,13 @@ void arpSweep( pcap_t *ph , ArpFactory &arpFactory ,
 
     exit(0);
   }else {
-    //paren    
+    //parent
     struct pcapLoopHandler handler;
-    //(struct pcapLoopHandler*)malloc(sizeof(pcapLoopHandler));
-    handler.arpListenerRunningFor = time (NULL);
+    handler.arpListenerStartedAt = time (NULL);
     handler.ph = ph;
     handler.targetList = targetList;
 
-    pcap_loop( ph , -1 , arpListener , (u_char*) &handler);    
+    pcap_loop( ph , -1 , arpListener , (u_char*) &handler);
     targetList = handler.targetList;
   }
 }

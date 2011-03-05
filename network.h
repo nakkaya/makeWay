@@ -51,6 +51,6 @@ struct arp_hdr{
 //struct to pass to pcap_loop
 struct pcapLoopHandler{
   pcap_t *ph;
-  time_t arpListenerRunningFor;
+  time_t arpListenerStartedAt;
   vector<Host> targetList;
 };
