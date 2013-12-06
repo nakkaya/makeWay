@@ -18,6 +18,7 @@
 #include <vector>
 #include <map>
 #include <inttypes.h>
+#include <unistd.h>
 
 //custom functions...
 #include "util.h"
