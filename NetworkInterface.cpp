@@ -15,7 +15,7 @@
 
 #include "NetworkInterface.h"
 #include <cstdio>
-
+#include <unistd.h>
 NetworkInterface::NetworkInterface( const char* dv ){
   dev = dv;
 }
